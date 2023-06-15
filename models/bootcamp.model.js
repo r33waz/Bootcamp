@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { validation } from "../constants/validation";
+import { validation } from "../constants/validation.js";
 
 
 //Creating bootcamp Schema
@@ -114,13 +114,14 @@ const bootCampSchema = mongoose.Schema({
     default: false,
   },
 
+  //giving the types and validationin bootcampSchema/user
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
     required: true,
   },
 });
 
-const bootcamp = mongoose.model('mongoose', bootCampSchema)
+const Bootcamp = mongoose.model('mongoose', bootCampSchema)
 
-export default bootcamp
+export default Bootcamp
