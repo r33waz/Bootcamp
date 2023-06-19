@@ -4,6 +4,9 @@ import config from "./config/config.js";
 import { dbconnect } from "./config/dbconnect.js";
 import mainrouter from "./routes/main.js";
 import morgan from "morgan";
+import { mongo } from "mongoose";
+import ExpressMongoSanitize from "express-mongo-sanitize";
+import 'dotenv/config'
 
 const app = express();
 
@@ -28,8 +31,13 @@ dbconnect()
 //     error:error.message
 //   })
 // })
+app.use(express.json())
 
 app.use(morgan('combined'))
+
+//helps to prevent from SQL injection
+//NO SQL Injection 
+app.use(ExpressMongoSanitize())
 
 app.use("/api/v1", mainrouter);
 

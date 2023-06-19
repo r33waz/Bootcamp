@@ -122,6 +122,6 @@ const bootCampSchema = mongoose.Schema({
   },
 });
 
-const Bootcamp = mongoose.model('mongoose', bootCampSchema)
+const Bootcamp = mongoose.model('Bootcamp', bootCampSchema)
 
 export default Bootcamp
