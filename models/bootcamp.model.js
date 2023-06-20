@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { validation } from "../constants/validation.js";
-
+import slugyfy from 'slugify'
 
 //Creating bootcamp Schema
 const bootCampSchema = mongoose.Schema({
@@ -120,7 +120,16 @@ const bootCampSchema = mongoose.Schema({
     ref: "User",
     required: true,
   },
+}, {
+  timestamps:true
 });
+
+//creating the slugyfy to remove the emptyy space between the search
+//which replace empty space with '-'
+bootCampSchema.pre('save', function (next) {
+  this.name = slugyfy(this.name.toLowercase())
+  next();
+})
 
 const Bootcamp = mongoose.model('Bootcamp', bootCampSchema)
 

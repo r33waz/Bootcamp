@@ -3,6 +3,8 @@ import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../utils/sendmail.js";
 import crypto from "crypto";
+import bcrypt from "bcrypt";
+import { ChildProcess } from "child_process";
 
 export const register = async (req, res) => {
   try {
@@ -169,14 +171,15 @@ export const resetpassword = async (req, res) => {
      })
     }
   
+    const password = await hashPassword(req.body.password);
     //updating the password using id
     const updatedPassword=await user.findOneAndUpdate({
       _id:user._id
     }, {
       $set: {
-        password: req.body.password,
-        resetpasswordExpiretoken : undefined,
-        resetPasswordToken : undefined
+        password,
+        resetpasswordExpiretoken : '',
+        resetPasswordToken :''
       }
     }, {
       new:true
@@ -185,4 +188,23 @@ export const resetpassword = async (req, res) => {
   } catch (error) {
     
   }
+}
+
+const hashPassword = async (password) => {
+  const salt = await bcrypt.genSalt(10)
+  const hashed = await bcrypt.hash(password, salt)
+  console.log(hashed);
+  return hashed
+}
+
+
+//function to updateDetails
+export const updateDetails = async () => {
+  
+}
+
+
+//function to updatePassword
+export const updatePassword = async () => {
+  
 }

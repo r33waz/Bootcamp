@@ -12,7 +12,12 @@ const config = {
   FROM_EMAIL: process.env.FROM_EMAIL,
   ///////////////////////////////////
   MESSAGE: process.env.MESSAGE,
-  TOKEN_EXPIRE:process.env.TOKEN_EXPIRE
+  TOKEN_EXPIRE: process.env.TOKEN_EXPIRE,
+
+  //file storage keys
+  CLOUDINARY_NAME: process.env.CLOUD_NAME,
+  CLOUDINARY_API_KEY: process.env.API_KEY,
+  CLOUDINARY_API_SECRET: process.env.API_SECRET,
 };
 
 export default config;
