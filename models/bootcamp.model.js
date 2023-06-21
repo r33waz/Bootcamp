@@ -99,7 +99,6 @@ const bootCampSchema = mongoose.Schema({
   //Importing validation message from  :- import { validation } from "../constants/validation";
   photo: {
     type: String,
-    required: [true, validation.PHOTO_VALIDATION],
   },
 
   //giving the types and validationin bootcampSchema/jobGuarantee

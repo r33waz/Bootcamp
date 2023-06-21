@@ -22,9 +22,9 @@ const userSchema = mongoose.Schema(
 
     //giving the types and validationin userSchema/role
     role: {
-      type: [String], //array of string
-      default: "User",
-      enum: ["User", "Publisher"],
+      type: String,
+      default: "user",
+      enum: ["user", "publisher"],
     },
 
     //giving the types and validationin userSchema/password
